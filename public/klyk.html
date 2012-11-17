@@ -1,6 +1,8 @@
 <html>
   <head>
     <title>Things</title>
+    <!-- Please migrate the styles and scripts on this page to standalone docs. -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <style>
     @font-face {
       font-family: 'Roboto-w';
@@ -17,10 +19,10 @@
       outline: none;
     }
     body {
-      background: #FF4242;
+      background: #E8E8E8;
       font-family: Roboto-w;
       font-weight: 300;
-      color: white;
+      color: #757575;
       padding: 0;
       margin: 0;
     }
@@ -32,7 +34,6 @@
     .container {
       position: relative;
       top: 100px;
-      padding: 0 40px;
     }
     h1,h2 {
       padding: 0;
@@ -47,6 +48,7 @@
     }
     .title {
       margin-bottom: 20px;
+      padding-left: 40px;
     }
     form button, form input {
       display:inline-block;
@@ -56,7 +58,7 @@
       border: none;
       border-radius: 3px;
       font-family: Roboto-w;
-      color: #FF4242;
+      color: #757575;
       font-weight: bold;
       font-size: 14px;
       letter-spacing: -1px;
@@ -64,6 +66,19 @@
     form button:hover {
       background: rgba(255,255,255,0.4);
       color: white;
+    }
+    .nearby {
+
+    }
+    .nearby .person {
+      background-color: #FF4242;
+      color: white;
+      font-size: 30px;
+      padding: 10px 0;
+      padding-left: 40px;
+      transition: background-color 1s;
+      -webkit-transition: background-color 1s;
+      -moz-transition: background-color 1s;
     }
     </style>
   </head>
@@ -74,12 +89,20 @@
         <h1>KLYK</h1>
         <h2>The best way to meet people</h2>
       </div>
-      <form action="">
-        <div>
-          <input type="" placeholder="email">
-          <button>Get satisfaction</button>
-        </div>
-      </form>
+      <div class="nearby">
+        <div class="person" x-distance="0"><span class="name">Vincent Lee</span></div>
+        <div class="person" x-distance="10"><span class="name">Vincent Lee</span></div>
+        <div class="person" x-distance="500"><span class="name">Vincent Lee</span></div>
+      </div>
     </div>
   </body>
+  <script type="text/javascript">
+  updateColors = function() {
+    $('.person').each(function(index) {
+      d = $(this).attr('x-distance');
+      $(this).css('background-color','hsl('+(50-50*Math.pow(1.1,-1*d))+',100%,55%)');
+    });
+  };
+  updateColors();
+  </script>
 </html>
